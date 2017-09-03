@@ -1,0 +1,27 @@
+Pro1  Combine Two Tables   主要是多表关联的考察，用left join比用from a,b要快一些
+Pro2  Second Highest Salary   主要考察表排序，以及多无结果的返回null的处理方式，就我的理解是用NVL()或者是判断的方式返回无值为null，但题解给了我思路。
+                              再通过再套一层select可以实现查询为空时返回null值~
+Pro3  Nth Highest Salary    考察对SQL语言中 CREATE FUNCTION 的理解，知道如何创建一个function以及定义变量
+        CREATE FUNCTION getNthHighestSalary(N INT) RETURNS INT
+        BEGIN
+          declare m int;
+          set m = N - 1;
+          RETURN (
+        SELECT
+          (SELECT DISTINCT
+          Salary
+          FROM
+          Employee
+          ORDER BY Salary DESC
+          LIMIT 1 OFFSET m)
+          );
+        END
+Pro4	Employees Earning More Than Their Managers   让我了解了一个表可以关联自己，再做一次逻辑判断
+Pro5	Rank Scores	 让我打开了视野，更灵活的去编写逻辑和判断
+        SELECT
+          Score,
+          @rank := @rank + (@prev <> (@prev := Score)) Rank
+        FROM
+          Scores,
+          (SELECT @rank := 0, @prev := -1) init
+        ORDER BY Score desc
