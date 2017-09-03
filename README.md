@@ -1,0 +1,2 @@
+# LeetCode
+write leetcode notes
