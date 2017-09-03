@@ -17,7 +17,7 @@ Pro3  Nth Highest Salary    考察对SQL语言中 CREATE FUNCTION 的理解，�
           );
         END
 Pro4	Employees Earning More Than Their Managers   让我了解了一个表可以关联自己，再做一次逻辑判断
-Pro5	Rank Scores	 让我打开了视野，更灵活的去编写逻辑和判断
+Pro5	Rank Scores	 让我打开了视野，更灵活的去编写逻辑和判断，相同的分数排名相同，否则向下递增
         SELECT
           Score,
           @rank := @rank + (@prev <> (@prev := Score)) Rank
@@ -25,3 +25,4 @@ Pro5	Rank Scores	 让我打开了视野，更灵活的去编写逻辑和判断
           Scores,
           (SELECT @rank := 0, @prev := -1) init
         ORDER BY Score desc
+Pro6  Consecutive Numbers   查看一张表中是否有连续一样的数，通过同一张表关联三个别名，通过序列号再来查看是否是连续出现
